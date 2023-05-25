@@ -11,10 +11,17 @@ app.use(bodyParser.json())
 app.use(cors())
 
 app.use(express.static('website'))
+const port = 8080
+
+
+
+const server = app.listen(port, () => {
+  console.log(`You are now on port: ${port}`)
+})
 
 app.get('/', function (req, res) {
-  // res.sendFile('dist/index.html')
-  res.sendFile(path.resolve('src/client/views/index.html'))
+  res.sendFile('dist/index.html')
+  // res.sendFile(path.resolve('src/client/views/index.html'))
 })
 
 app.get('/test', function (req, res) {
