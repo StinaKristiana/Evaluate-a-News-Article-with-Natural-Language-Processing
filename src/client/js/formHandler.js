@@ -81,3 +81,4 @@ const showData = async () => {
     console.log(error)
   }
 }
+export { integrationAPI }
