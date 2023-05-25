@@ -10,3 +10,18 @@ input {
     line-height: 16px;
     margin: 10px 0;
 }
+#polarity::before {
+    content: "Polarity: ";
+}
+#agreement::before {
+    content: "Agreement: ";
+}
+#subjectivity::before {
+    content: "Subjectivity: ";
+}
+#confidence::before {
+    content: "Confidence: ";
+}
+#irony::before {
+    content: "Irony: ";
+}

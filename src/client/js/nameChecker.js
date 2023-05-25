@@ -1,10 +1,7 @@
 function checkForName (inputText) {
-  console.log('::: Running checkForName :::', inputText)
-  let names = ['Picard', 'Janeway', 'Kirk', 'Archer', 'Georgiou']
+let regexp = /^(http|https):\/\/[^ "]+$/
+return regexp.test(inputText)
 
-  if (names.includes(inputText)) {
-    alert('Welcome, Captain!')
-  }
 }
 
 export { checkForName }
