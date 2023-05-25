@@ -5,13 +5,13 @@ generateBtn.addEventListener('click', integrationAPI)
 
 const getWeatherData = async () => {
   const txt = document.getElementById('url-input').value
-const baseURL = `https://api.meaningcloud.com/sentiment-2.1?key=${apiKey}&lang=auto&url=${txt}`
+  const baseURL = `https://api.meaningcloud.com/sentiment-2.1?key=${apiKey}&lang=auto&url=${txt}`
 
   const res = await fetch(baseURL)
-  console.log(res);
+  console.log(res)
   try {
     const data = await res.json()
-    console.log(data);
+    console.log(data)
     return data
   } catch (error) {
     alert('There seems to be some error:', error)
@@ -22,27 +22,26 @@ function integrationAPI (e) {
   e.preventDefault()
   getWeatherData()
     .then(data => {
-      console.log(data);
+      console.log(data)
       postData('/addDatatoServer', {
         polarity: data.polarity,
         agreement: data.agreement,
         subjectivity: data.subjectivity,
-        confidence:  data.confidence,
-     irony: data.irony
-      }
-      )
+        confidence: data.confidence,
+        irony: data.irony
+      })
     })
     .then(() => {
-      console.log('heeeree');
+      console.log('heeeree')
       showData()
     })
     .catch(error => {
-      console.log( error)
+      console.log(error)
     })
 }
 
 const postData = async (url = '', data = {}) => {
-  console.log(url);
+  console.log(url)
   const response = await fetch(url, {
     method: 'POST',
     credentials: 'same-origin',
@@ -59,10 +58,10 @@ const postData = async (url = '', data = {}) => {
   })
   try {
     const postedData = await response.json()
-    console.log(postedData);
+    console.log(postedData)
     return postedData
   } catch (error) {
-  console.log(error)
+    console.log(error)
   }
 }
 
@@ -70,7 +69,7 @@ const showData = async () => {
   const request = await fetch('/all')
   try {
     const allData = await request.json()
-    console.log(allData);
+    console.log(allData)
     {
       document.getElementById('polarity').innerHTML = allData.polarity
       document.getElementById('agreement').innerHTML = allData.agreement
