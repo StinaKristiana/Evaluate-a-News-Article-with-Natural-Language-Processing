@@ -1,5 +1,5 @@
 form {
-    border: 1px solid #545454;
+    border: 1px solid #b0b2b7;
     border-radius: 3px;
     padding: 40px;
 }
@@ -24,4 +24,7 @@ input {
 }
 #irony::before {
     content: "Irony: ";
+}
+#text::before {
+    content: "Text: ";
 }

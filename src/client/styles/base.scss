@@ -7,9 +7,24 @@ body {
 
 main {
     flex: 2;
+  background-color: #72757b;
 }
-
+h1{
+     margin: auto;
+  width: 25%;
+  padding: 10px;
+ color:  #24262b;
+}
 section {
     max-width: 800px;
     margin: 50px auto;
+}
+#results {
+     margin: auto;
+  width: 25%;
+  padding: 10px;
+  color:  #e5e7eb,
+}
+strong{
+  color:  #24262b;
 }

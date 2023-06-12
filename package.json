@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --env=jsdom",
     "start": "node src/server/index.js",
     "build-prod": "webpack --config webpack.prod.js",
     "build-dev": "webpack-dev-server  --config webpack.dev.js --open"
@@ -17,7 +17,9 @@
     "body-parser": "^1.20.2",
     "clean-webpack-plugin": "^4.0.0",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "express": "^4.17.1",
+    "jest-environment-jsdom": "^29.5.0",
     "node-fetch": "^2.6.11",
     "webpack-cli": "^3.3.11"
   },

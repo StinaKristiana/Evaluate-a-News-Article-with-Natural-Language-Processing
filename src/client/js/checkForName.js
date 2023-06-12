@@ -1,6 +1,6 @@
-function checkForName (inputText) {
+function checkForName (formText) {
   let regexp = /^(http|https):\/\/[^ "]+$/
-  return regexp.test(inputText)
+  return regexp.test(formText)
 }
 
 export { checkForName }

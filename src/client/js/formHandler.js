@@ -1,84 +1,54 @@
-const apiKey = 'e252c7b979260bc626024454b282e9a2 '
+import { checkForName } from './checkForName'
+
 const generateBtn = document.getElementById('generate')
+if (generateBtn) {
+  generateBtn.addEventListener('click', handleSubmit)
+}
 
-generateBtn.addEventListener('click', integrationAPI)
+function handleSubmit (e) {
+  let formText = document.getElementById('url-input').value
 
-const getWeatherData = async () => {
-  const txt = document.getElementById('url-input').value
-  const baseURL = `https://api.meaningcloud.com/sentiment-2.1?key=${apiKey}&lang=auto&url=${txt}`
+  e.preventDefault()
 
-  const res = await fetch(baseURL)
-  console.log(res)
-  try {
-    const data = await res.json()
-    console.log(data)
-    return data
-  } catch (error) {
-    alert('There seems to be some error:', error)
+  if (checkForName(formText)) {
+    postData('http://localhost:3000/api', { url: formText }).then(res => {
+      dataToShow(res)
+    })
+  } else {
+    alert('Please use URL with HTTP or HTTPS')
   }
 }
-
-function integrationAPI (e) {
-  e.preventDefault()
-  getWeatherData()
-    .then(data => {
-      console.log(data)
-      postData('/addDatatoServer', {
-        polarity: data.polarity,
-        agreement: data.agreement,
-        subjectivity: data.subjectivity,
-        confidence: data.confidence,
-        irony: data.irony
-      })
-    })
-    .then(() => {
-      console.log('heeeree')
-      showData()
-    })
-    .catch(error => {
-      console.log(error)
-    })
+const dataToShow = res => {
+  document.getElementById('polarity').innerHTML = ` ${res.score_tag}`
+  document.getElementById('agreement').innerHTML = `${res.agreement}`
+  document.getElementById('subjectivity').innerHTML = `${res.subjectivity}`
+  document.getElementById('confidence').innerHTML = `${res.confidence}`
+  document.getElementById('irony').innerHTML = `${res.irony}`
+  document.getElementById('text').innerHTML = `${
+    res.sentence_list[0] === undefined
+      ? 'not available'
+      : res.sentence_list[0].text
+  }`
 }
-
 const postData = async (url = '', data = {}) => {
-  console.log(url)
   const response = await fetch(url, {
     method: 'POST',
     credentials: 'same-origin',
+    mode: 'cors',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({
-      polarity: data.polarity,
-      agreement: data.agreement,
-      subjectivity: data.subjectivity,
-      confidence: data.confidence,
-      irony: data.irony
-    })
+    body: JSON.stringify(data)
   })
   try {
-    const postedData = await response.json()
-    console.log(postedData)
-    return postedData
+    const dataFromJson = await response.json()
+    if (dataFromJson.status.code === '212') {
+      alert(dataFromJson.status.msg)
+    }
+    return dataFromJson
   } catch (error) {
-    console.log(error)
+    console.log('error', error)
   }
 }
 
-const showData = async () => {
-  const request = await fetch('/all')
-  try {
-    const allData = await request.json()
-    console.log(allData)
-    {
-      document.getElementById('polarity').innerHTML = allData.polarity
-      document.getElementById('agreement').innerHTML = allData.agreement
-      document.getElementById('subjectivity').innerHTML = allData.subjectivity
-      document.getElementById('confidence').innerHTML = allData.confidence
-      document.getElementById('irony').innerHTML = allData.irony
-    }
-  } catch (error) {
-    console.log(error)
-  }
-}
-export { integrationAPI }
+export { handleSubmit }

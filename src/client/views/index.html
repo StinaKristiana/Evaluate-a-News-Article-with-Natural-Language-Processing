@@ -5,30 +5,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evaluation Test</title>
-
+    <title>Sentiment Analysis</title>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 
 <body>
     <main>
-        <p>Enter a URL of an article / a blog to discover its sentiment.</p>
         <section>
             <h1>Sentiment Analysis</h1>
             <form id="sentiment-form">
-                <input type="text" name="url-input" id="url-input" placeholder="Enter URL">
+                <input type="text" required value="" name="url-input" id="url-input" placeholder="Enter URL">
                 <input type="submit" id="generate" value="Analyze Sentiment">
             </form>
         </section>
 
         <section>
-            <strong id="entryHolder">Form Results:</strong>
-            <div id="polarity"></div>
-            <div id="agreement"></div>
-            <div id="subjectivity"></div>
-            <div id="confidence"></div>
-            <div id="irony"></div>
+            <div id="results">
+                <strong id="entryHolder">Form Results:</strong>
+                <div id="polarity"></div>
+                <div id="agreement"></div>
+                <div id="subjectivity"></div>
+                <div id="confidence"></div>
+                <div id="irony"></div>
+                <div id="text"></div>
+            </div>
+
         </section>
     </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col">
+                    <h4>Made with love by Stina Kalnina</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>
